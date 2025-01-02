@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #13536e; /* Pink color for sidebar */
+            color: #ffffff;
+            position: absolute;
+            margin-top: 130px;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+        /* Header Section */
+        header {
+            background-color: #13536e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            padding-left: 300px;
+        }
+
+        header img {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            width: 180px;
+            
+            
+        }
+
+        .sidebar img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+        }
+
+        .sidebar h3 {
+            margin: 15px 0;
+            color: #ffffff;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .sidebar a:hover {
+            background-color: #75E6DA; /* Darker pink on hover */
+        }
+
+        .sidebar button {
+            background-color: #75E6DA;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar button:hover {
+            background-color: #75E6DA; /* Darker pink on hover */
+            color: #ffffff;
+        }
+
+        /* Main Dashboard Styles */
+        .dashboard {
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5em;
+            color: #333333; /* Dark gray for text */
+        }
+
+        .dashboard-header p {
+            font-size: 1.2em;
+            color: #000000; /* Lighter gray for secondary text */
+        }
+
+        /* Buttons */
+        .dashboard-actions {
+            margin-top: 20px;
+        }
+
+        .dashboard-actions button {
+            background-color: #13536e;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 30px;
+            margin-right: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        .dashboard-actions button:hover {
+            background-color: #75E6DA; /* Darker pink on hover */
+        }
+
+        /* Stats Box */
+        .stats-box {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666666; /* Lighter gray for text */
+        }
+
+        .stats-box p {
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .stats-box img {
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images\lgRemoved.png" alt="TutorConnect Logo">
+        <h1>Welcome to Your Dashboard</h1>
+    </header>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="images\dummy.jpg" alt="Profile Picture">
+        <h3>Kwenza Hadebe</h3>
+        <button>Student Profile</button>
+        <a href="#">Home</a>
+        <a href="#">Request a Tutor</a>
+        <a href="#">My Profile</a>
+        <a href="#">Help</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <h1>Hi, Kwenza</h1>
+            <p>Welcome to your student dashboard! You can find all your information here regarding your student profile, lessons, tutor requests, and tutors.</p>
+        </div>
+        <div class="dashboard-actions">
+            <button>Request a Tutor</button>
+            <button>Apply to Tutor</button>
+        </div>
+        <div class="stats-box">
+            <div>
+                <p>0 Lessons completed</p>
+                <p>0 Hours completed</p>
+                <p>0 Lesson reviews submitted</p>
+                <p>0 Lessons rejected</p>
+            </div>
+            <img src="stats-image.png" alt="Stats Illustration">
+        </div>
+    </div>
+
+</body>
+</html>

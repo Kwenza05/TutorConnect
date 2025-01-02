@@ -1,0 +1,155 @@
+<?php
+session_start();
+include 'db_connection.php'; // Include the database connection file
+
+// Check if the user is logged in, redirect to login if not
+/* if (!isset($_SESSION['user_role'])) {
+    header("Location: login.php");
+    exit();
+} */
+
+// Fetch user's name and surname from session or database if needed
+$name = $_SESSION['name'] ?? 'User'; // Fetch from session (adjust as necessary)
+$surname = $_SESSION['surname'] ?? '';
+
+// Fetch inbox messages for the current tutee or tutor
+$tutling_id = $_SESSION['tutling_id'] ?? null; // Adjust the session variable to store tutling_id
+$tutor_id = $_SESSION['tutor_id'] ?? null;     // Adjust for the logged-in tutor, if any
+
+$inboxMessages = [];
+if ($tutling_id) {
+    // Fetch messages for the logged-in tutling
+    $stmt = $db->prepare("SELECT DISTINCT Tutors.name, Tutors.surname, Messages.message, Messages.tutor_id 
+                          FROM Messages 
+                          JOIN Tutors ON Messages.tutor_id = Tutors.tutor_id 
+                          WHERE Messages.tutling_id = ?");
+    $stmt->bind_param("i", $tutling_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $inboxMessages = $result->fetch_all(MYSQLI_ASSOC);
+} elseif ($tutor_id) {
+    // Fetch messages for the logged-in tutor
+    $stmt = $db->prepare("SELECT DISTINCT Tutlings.name, Tutlings.surname, Messages.message, Messages.tutling_id 
+                          FROM Messages 
+                          JOIN Tutlings ON Messages.tutling_id = Tutlings.tutling_id 
+                          WHERE Messages.tutor_id = ?");
+    $stmt->bind_param("i", $tutor_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $inboxMessages = $result->fetch_all(MYSQLI_ASSOC);
+}
+
+// Handle message sending
+$messageStatus = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['message'], $_POST['tutor_id'])) {
+    $message = trim($_POST['message']);
+    $tutling_id = $_SESSION['tutling_id'] ?? null;
+    $tutor_id = intval($_POST['tutor_id']); // Extract tutor_id from the form
+    
+    if ($tutling_id && !empty($message)) {
+        // Insert message into the Messages table
+        $stmt = $db->prepare("INSERT INTO Messages (tutling_id, tutor_id, message) VALUES (?, ?, ?)");
+        $stmt->bind_param("iis", $tutling_id, $tutor_id, $message);
+        if ($stmt->execute()) {
+            $messageStatus = "Message sent successfully!";
+        } else {
+            $messageStatus = "Failed to send message.";
+        }
+    } else {
+        $messageStatus = "You must be logged in as a tutee and message cannot be empty.";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Tutee Dashboard</title>
+    <style>
+        /* General styles (as provided earlier) */
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/lgRemoved.png" alt="TutorConnect Logo">
+        <h1>Messages</h1>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="images/dummy.jpg" alt="Profile Picture">
+        <h3><?php echo htmlspecialchars($name) . " " . htmlspecialchars($surname); ?></h3>
+        <a href="tutee_profile.html"><button>Edit Student Profile</button></a>
+        <a href="#">My Dashboard</a>
+        <a href="#" id="messages-link">My Messages</a>
+        <a href="findtutor.php">Find a Tutor</a>
+        <a href="index.html">Home</a>
+        <a href="index.html">Logout</a>
+    </div>
+
+    <!-- Main Messaging Content -->
+    <div class="dashboard">
+        <div class="messages-section">
+            <h2>Inbox</h2>
+            <div class="inbox" id="inbox">
+                <?php if (!empty($inboxMessages)): ?>
+                    <?php foreach ($inboxMessages as $message): ?>
+                        <div class="inbox-item" onclick="openMessage(<?php echo $message['tutor_id']; ?>, '<?php echo addslashes($message['message']); ?>')">
+                            <?php echo htmlspecialchars($message['name']) . " " . htmlspecialchars($message['surname']) . ": " . htmlspecialchars($message['message']); ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No messages in the inbox.</p>
+                <?php endif; ?>
+            </div>
+
+            <h2>Messages</h2>
+            <div class="message-box" id="message-box">
+                <!-- Messages will appear here dynamically -->
+            </div>
+
+            <div class="message-input">
+                <form method="POST" action="">
+                    <input type="text" name="message" id="message-input" placeholder="Type your reply here..." required>
+                    <input type="hidden" name="tutor_id" id="tutor_id">
+                    <button type="submit">Reply</button>
+                </form>
+                <?php if ($messageStatus): ?>
+                    <p class="success"><?php echo htmlspecialchars($messageStatus); ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to display selected message from inbox
+        function openMessage(tutorId, message) {
+            const messageBox = document.getElementById('message-box');
+            messageBox.innerHTML = ''; // Clear previous messages
+
+            // Display the tutor's message
+            const tutorMessageDiv = document.createElement('div');
+            tutorMessageDiv.classList.add('tutor-message');
+            tutorMessageDiv.textContent = `Tutor: ${message}`;
+            messageBox.appendChild(tutorMessageDiv);
+
+            // Set hidden field value for tutor ID
+            document.getElementById('tutor_id').value = tutorId;
+
+            // Fetch conversation from server (AJAX)
+            fetch(`fetch_messages.php?tutor_id=${tutorId}`)
+                .then(response => response.json())
+                .then(messages => {
+                    messages.forEach(msg => {
+                        const msgDiv = document.createElement('div');
+                        msgDiv.classList.add(msg.sender === 'tutor' ? 'tutor-message' : 'student-message');
+                        msgDiv.textContent = `${msg.sender === 'tutor' ? 'Tutor' : 'You'}: ${msg.message}`;
+                        messageBox.appendChild(msgDiv);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>

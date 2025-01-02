@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TutorConnect - Find a Tutor</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        nav {
+            z-index: 1;
+        }
+
+        
+
+    </style>
+
+</head>
+<body>
+    <!-- Header -->
+    <header style="background: url('background.jpg') no-repeat center center; background-size: cover; padding: 120px; text-align: center; color: white;">
+        <img src="logo.png" alt="TutorConnect Logo" style="position: absolute; top: 20px; left: 20px; width: 80px; height: auto;">
+    </header>
+       <!-- NAVIGATION -->
+<nav>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">☰ Menu</label>
+  
+    <ul class="nav-list" >
+      <li ><a href="index.html">Home</a></li>
+      <li class="active"><a href="findtutor.html">Find a Tutor</a></li>
+      <li>
+        <a href="#">Services ▼</a>
+        <ul class="dropdown">
+          <li><a href="tutoring.html">Tutoring</a></li>
+          <li><a href="consulting.html">Consulting</a></li>
+          <li><a href="coaching.html">Coaching</a></li>
+        </ul>
+      </li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </nav>
+
+    <main>
+        <!-- Search Section -->
+        <section style="text-align: center; padding: 100px 0; position: relative; width: 100%; box-sizing: border-box;" class="search-section">
+            <div style="position: relative;">
+                <h2>Search for Tutors by Subject</h2>
+                <p>Enter the subject you need help with, and we'll find the best tutors for you.</p>
+                <form action="search-results.html" method="get">
+                    <input type="text" name="subject" placeholder="Enter a subject (e.g., Math, Science)" style="padding: 10px; width: 300px; border-radius: 5px; border: 1px solid #ccc;">
+                    <button type="submit" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">Search</button>
+                </form>
+            </div>
+        </section>
+
+
+        <!-- featured tutors -->
+        <h1 id="tutor-header">Featured Tutors</h1>
+<section class="featuredTutor-carousel">
+    <button class="carousel-btn left">&lt;</button>
+    <div class="featuredTutor-column">
+        <article class="tutor-blocks">
+            <img src="images/mtho.jpeg" class="tutor-images" alt="Mthobisi Latha" width="100" height="150" style="object-fit: cover;">
+            <h4>Mtho - Math 3 Expert</h4>
+            <p>Mtho specializes in algebra and calculus, with over 10 years of experience.</p>
+
+                <!-- Button to open the modal -->
+                <button id="openModalBtn1" class="reviewButton" title="Press Me!"><strong>Rate Tutor</strong></button>
+
+                <!-- The Modal -->
+                <div class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Rate Your experience</h2>
+                    <p>Your Feedback is Highly Valued</p>
+                    <form class="popupForm">
+                        
+                        <!-- star rating effect -->
+                        <div class="star-rating">
+                            <span class="star" data-value="5">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="1">&#9733;</span>
+                        </div>
+                        <div class="rating-value">Rating: 0</div>
+
+                        <textarea id="comments" name="comments" rows="4"    cols="auto   " placeholder="Write your Thoughts here ...."></textarea><br><br>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+
+        </article>
+
+        <article class="tutor-blocks">
+            <img src="images/kwenza.jpeg" class="tutor-images" alt="Kwenza Hadebe" width="100" height="150" style="object-fit: cover;">
+            <h4>Kwenza - CS3 Guru</h4>
+            <p>Kwenza has a passion for Java (Data structures) and compilers, making complex topics easy to understand.</p>
+
+                    <!-- Button to open the modal -->
+            <button id="openModalBtn2" class="reviewButton" title="Press Me!"><strong>Rate Tutor</strong></button>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal2">
+                <div class="modal-content">
+                    <span class="close" id="closeModal2">&times;</span>
+                    <h2>Rate Your experience</h2>
+                    <p>Your Feedback is Highly Valued</p>
+                    <form class="popupForm">
+                        
+                        <!-- star rating effect -->
+                        <div class="star-rating">
+                            <span class="star" data-value="5">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="1">&#9733;</span>
+                        </div>
+                        <div class="rating-value">Rating: 0</div>
+
+                        <textarea id="comments" name="comments" rows="4"    cols="auto   " placeholder="Write your Thoughts here ...."></textarea><br><br>
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </article>
+
+        <article class="tutor-blocks">
+            <img src="images/rinae.jpeg" class="tutor-images" alt="Rinae Makhado" width="100" height="150" style="object-fit: cover;">
+            <h4>Rinae - IS3 Specialist</h4>
+            <p>Rinae offers tutoring in Data Analysis and SQL, helping students become experts.</p>
+                        <!-- Button to open the modal -->
+                    <button id="openModalBtn3" class="reviewButton" title="Press Me!"><strong>Rate Tutor</strong></button>
+
+                    <!-- The Modal -->
+                    <div class="modal" id="myModal3">
+                        <div class="modal-content">
+                            <span class="close" id="closeModal3">&times;</span>
+                            <h2>Rate Your experience</h2>
+                    <p>Your Feedback is Highly Valued</p>
+                    <form class="popupForm">
+                        
+                        <!-- star rating effect -->
+                        <div class="star-rating">
+                            <span class="star" data-value="5">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="1">&#9733;</span>
+                        </div>
+                        <div class="rating-value">Rating: 0</div>
+
+                        <textarea id="comments" name="comments" rows="4"    cols="auto   " placeholder="Write your Thoughts here ...."></textarea><br><br>
+                                <button type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+        </article>
+
+        <article class="tutor-blocks">
+            <img src="images/siya.jpeg" class="tutor-images" alt="Siyabulela Gongqa" width="100" height="150" style="object-fit: cover;">
+            <h4>Siya - Accounting 3 Master</h4>
+            <p>Siya offers tutoring in Taxation, Auditing, and cash flows. People call him the king of balancing books.</p>
+
+                    <!-- Button to open the modal -->
+                    <button id="openModalBtn4" class="reviewButton" title="Press Me!"><strong>Rate Tutor</strong></button>
+
+                    <!-- The Modal -->
+                    <div class="modal" id="myModal4">
+                        <div class="modal-content">
+                            <span class="close" id="closeModal4">&times;</span>
+                            <h2>Rate Your experience</h2>
+                    <p>Your Feedback is Highly Valued</p>
+                    <form class="popupForm">
+                        
+                        <!-- star rating effect -->
+                        <div class="star-rating">
+                            <span class="star" data-value="5">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="1">&#9733;</span>
+                        </div>
+                        <div class="rating-value">Rating: 0</div>
+
+                        <textarea id="comments" name="comments" rows="4"    cols="auto   " placeholder="Write your Thoughts here ...."></textarea><br><br>
+                                <button type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+        </article>
+
+        <article class="tutor-blocks">
+            <img src="images/siya.jpeg" class="tutor-images" alt="Siyabulela Gongqa" width="100" height="150" style="object-fit: cover;">
+            <h4>new</h4>
+            <p>Siya offers tutoring in Taxation, Auditing, and cash flows. People call him the king of balancing books.</p>
+
+            <!-- Button to open the modal -->
+            <button id="openModalBtn"  class="reviewButton" title="Press Me!" > <strong>Rate Tutor</strong></button>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal4">
+                <div class="modal-content">
+                    <span class="close" id="closeModal4" >&times;</span>
+                    <h2>Rate Your experience</h2>
+                    <p>Your Feedback is Highly Valued</p>
+                    <form class="popupForm">
+                        
+                        <!-- star rating effect -->
+                        <div class="star-rating">
+                            <span class="star" data-value="5">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="1">&#9733;</span>
+                        </div>
+                        <div class="rating-value">Rating: 0</div>
+
+                        <textarea id="comments" name="comments" rows="4"    cols="auto   " placeholder="Write your Thoughts here ...."></textarea><br><br>
+                        <button style="margin-bottom: 100px;" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+
+        </article>
+
+    </div>
+    <button class="carousel-btn right">&gt;</button>
+</section>
+
+    </main>
+
+  
+    <!-- FOOTER -->
+    <footer > 
+        <p>&copy; 2024 TutorConnect. All rights reserved.</p>
+        <p>Authors: Kwenza Hadebe | Rinae Makhado | Siyabulela Gongqa | Mthobisi Latha</p>
+        <p>Contact: <a href="mailto:hadebezohh@gmail.com">hadebezohh@gmail.com</a></p>
+        <p>Follow us on:
+          <a href="https://facebook.com/tutorconnect" target="_blank" style="color: black;">Facebook</a> |
+          <a href="https://twitter.com/tutorconnect" target="_blank" style="color: black;">Twitter</a> |
+          <a href="https://instagram.com/tutorconnect" target="_blank" style="color: black ;">Instagram</a>
+        </p>
+      </footer>
+
+      
+      <!-- Back to Top Button -->
+<button id="backToTopBtn" class="back-to-top" onclick="scrollToTop()">&#8679; Back to Top</button>
+<script src="script.js"></script>
+</body>
+
+</html>

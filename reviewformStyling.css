@@ -1,0 +1,141 @@
+/* Modal overlay (darkens the background) */
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 2001; /* Make sure it's above other content */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal content */
+.modal {
+  background-color: white; /* White background for visibility */
+  padding: 20px; /* Reduced padding for consistency */
+  border-radius: 10px;
+  max-width: 400px; /* Maximum width for modal */
+  width: 90%; /* Responsive width */
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2); /* Shadow for contrast */
+  z-index: 1000; /* Ensure modal content is on top */
+  color: #333; /* Ensure text is a dark color */
+  text-align: center; /* Center text */
+  position: relative;
+}
+
+/* Animation for modal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+  color: #aaa; /* Initial color */
+}
+
+.close:hover,
+.close:focus {
+  color: black; /* Hover color */
+}
+
+/* Ensures the text is visible */
+.modal-content h2, 
+.modal-content p, 
+.modal-content form {
+  color: #333; /* Dark text for visibility */
+}
+
+/* Form elements */
+textarea, input, button {
+  color: #333; /* Text color inside form fields */
+  border: 1px solid #ccc;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #007BFF; /* Focus border color */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  background-color: #fff;
+  outline: none;
+}
+
+button {
+  background-color: #4CAF50; /* Button color */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #75E6DA; /* Hover effect */
+  transform: scale(1.05); /* Slight scaling on hover */
+}
+
+/* Star rating styles */
+.star-rating {
+  direction: rtl;
+  font-size: 3em;
+  cursor: pointer;
+}
+
+.star {
+  color: lightgray;
+  transition: color 0.3s ease;
+}
+
+.star.active,
+.star:hover,
+.star:hover ~ .star {
+  color: rgb(50, 204, 76);
+}
+
+.star.active {
+  color: gold;
+}
+
+/* Center the modal content */
+.modal-content {
+  background-color: white;
+  padding: 20px; /* Adjusted padding */
+  width: auto; /* Adjust width as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centering */
+}
+
+/* Submit button */
+.submitButton {
+  margin-bottom: 50px;
+  padding: 20px;
+}
+
+.submitButton:hover {
+  background-color: #75E6DA; /* Submit button hover effect */
+  transform: scale(1.1);
+}

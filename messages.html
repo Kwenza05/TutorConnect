@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Tutee Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #13536e;
+            color: #ffffff;
+            position: fixed;
+            margin-top: 130px;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .sidebar img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar h3 {
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .sidebar a:hover {
+            background-color: #75E6DA;
+            width: 200px;
+        }
+
+        .sidebar button {
+            background-color: #75E6DA;
+            color: #ffffff;
+            border: 1px solid white;
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar button:hover {
+            background-color: #75E6DA;
+            color: #ffffff;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #13536e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            padding-left: 300px;
+        }
+
+        header img {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            width: 180px;
+        }
+
+        /* Main Dashboard Styles */
+        .dashboard {
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        /* Messaging Section */
+        .messages-section {
+            margin-top: 20px;
+        }
+
+        .inbox {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .inbox-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .inbox-item:hover {
+            background-color: #f1f1f1;
+        }
+
+        .message-box {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .message-box .tutor-message, .message-box .student-message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .tutor-message {
+            background-color: #e0f7fa;
+            text-align: left;
+        }
+
+        .student-message {
+            background-color: #d1c4e9;
+            text-align: right;
+        }
+
+        .message-input {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .message-input input {
+            flex: 1;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .message-input button {
+            background-color: #13536e;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .message-input button:hover {
+            background-color: #75E6DA;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/lgRemoved.png" alt="TutorConnect Logo">
+        <h1>Messages</h1>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="images/dummy.jpg" alt="Profile Picture">
+        <h3><?php echo htmlspecialchars($name) . " " . htmlspecialchars($surname); ?></h3>
+        <a href="tutee_profile.html"><button>Edit Student Profile</button></a>
+        <a href="#">My Dashboard</a>
+        <a href="#" id="messages-link">My Messages</a>
+        <a href="findtutor.php">Find a Tutor</a>
+        <a href="index.html">Home</a>
+        <a href="index.php">Logout</a>
+    </div>
+
+    <!-- Main Messaging Content -->
+    <div class="dashboard">
+        <div class="messages-section">
+            <h2>Inbox</h2>
+            <div class="inbox" id="inbox">
+                <?php include 'fetch_inbox.php'; ?>
+            </div>
+
+            <h2>Messages</h2>
+            <div class="message-box" id="message-box">
+                <!-- Messages will appear here dynamically -->
+            </div>
+
+            <div class="message-input">
+                <form method="POST" action="send_message.php">
+                    <input type="text" name="message" id="message-input" placeholder="Type your reply here...">
+                    <input type="hidden" name="tutor_id" id="tutor_id">
+                    <button type="submit">Reply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to display selected message from inbox
+        function openMessage(tutorId, message) {
+            const messageBox = document.getElementById('message-box');
+            messageBox.innerHTML = ''; // Clear previous messages
+
+            // Display the tutor's message
+            const tutorMessageDiv = document.createElement('div');
+            tutorMessageDiv.classList.add('tutor-message');
+            tutorMessageDiv.textContent = `Tutor: ${message}`;
+            messageBox.appendChild(tutorMessageDiv);
+
+            // Set hidden field value for tutor ID
+            document.getElementById('tutor_id').value = tutorId;
+
+            // Fetch conversation from server (AJAX)
+            fetch(`fetch_messages.php?tutor_id=${tutorId}`)
+                .then(response => response.json())
+                .then(messages => {
+                    messages.forEach(msg => {
+                        const msgDiv = document.createElement('div');
+                        msgDiv.classList.add(msg.sender === 'tutor' ? 'tutor-message' : 'student-message');
+                        msgDiv.textContent = `${msg.sender === 'tutor' ? 'Tutor' : 'You'}: ${msg.message}`;
+                        messageBox.appendChild(msgDiv);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>

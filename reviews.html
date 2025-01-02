@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TutorConnect - Find a Tutor</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            body {
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+
+}
+
+ /* header section of page */
+ header {
+    background: url('background.jpg') no-repeat center center; background-size: cover; padding: 150px; text-align: center; color: white;
+    flex-wrap: wrap; 
+ }
+
+.revBlock {
+    box-shadow: 0 4px 6px rgba(0.1, 0.1, 0.1, 0.1),
+  3px 1px 3px rgba( 0.080, 0.08, 0.08, 0.08);
+  width: 300px;
+  padding: 20px;
+  border-bottom-left-radius: 25%;
+  border-bottom-right-radius: 25%;
+  
+  text-align: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  background-color: lightblue;
+  color: white;
+  
+}
+.revBlock:hover {
+    transform: scale(1.1); /* Slightly enlarges tutor block */
+}
+
+
+#reviews {
+    column-count: 2;
+    column-gap: 50px;
+    width: 50%; /* Adjusted for better centering */
+    margin: 0 auto;
+    padding: 20px; /* Added padding for spacing */
+}
+
+.pic-profile {
+    object-fit: cover;
+  width: 100px;  height: 100px; object-fit: cover; border-radius: 50%;
+  transition: opacity 0.3s;
+  border: 10px solid white;
+}
+
+.image-container {
+    /* border-radius: 50%; */display: flex;
+    justify-content: center;
+    align-items: center; /* Center the image vertically */
+    margin-bottom: 15px; /* Adds space between the image and the text */
+}
+
+ /* media queryies for reviews*/
+ /* Media query for smaller screens */
+@media (max-width: 768px) {
+    #reviews {
+        column-count: 1;
+        width: 80%; /* Make the column width larger to fit content better */
+    }
+    
+    .revBlock {
+        width: 100%; /* Make the blocks full width */
+        padding: 15px; /* Reduce padding for smaller screens */
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+  }
+  
+  /* Media query for very small screens */
+  @media (max-width: 480px) {
+    #reviews {
+        width: 100%; /* Full width for very small screens */
+    }
+    
+    .revBlock {
+        width: 100%; /* Keep full width */
+        padding: 10px; 
+        margin-bottom: 10px;
+        border-radius: 15%; /* Slightly reduce border-radius for better fit */
+    }
+  }
+  
+  @media (max-width: 1365px) {
+    #reviews {
+        width: 100%; /* Full width for very small screens */
+    }
+    
+    .revBlock {
+        width: 100%; /* Keep full width */
+        padding: 10px; 
+        margin-bottom: 10px;
+        border-radius: 15%; /* Slightly reduce border-radius for better fit */
+    }
+  }
+  
+  
+  
+  
+  /* footer section */
+  footer  {
+    background-color:  #D4F1F4;
+    text-align: center;
+  }
+
+ /* text media query */ 
+ /* smaller font size for smaller screens */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+  
+    h2 {
+        font-size: 1.75rem;
+    }
+  
+    h3 {
+        font-size: 1.5rem;
+    }
+  
+    body {
+        font-size: 14px; /* Smaller font for smaller screens */
+    }
+  }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <img src="logo1.png" alt="TutorConnect Logo" style="position: absolute; top: 20px; left: 20px; width: 110px; height: auto;">
+        </header>
+        <!-- Navigation Menu -->
+        <nav>
+
+            <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+            <label for="menu-toggle" class="menu-icon">☰ Menu</label>
+          
+            <ul class="nav-list" >
+              <li ><a href="index.php">Home</a></li>
+              <li><a href="findtutor.php">Find a Tutor</a></li>
+              <!--<li>
+                <a href="#">Services ▼</a>
+                <ul class="dropdown">
+                  <li><a href="tutoring.html">Tutoring</a></li>
+                  <li><a href="consulting.html">Consulting</a></li>
+                  <li><a href="coaching.html">Coaching</a></li>
+                </ul>
+              </li>-->
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li class="active"><a href="reviews.html">Reviews</a></li>
+            </ul>
+          </nav>
+        <!-- reviews-->
+
+       <h1 style="text-align: center; color: black;">We Would Love To Hear From You</h1>
+       <section id="reviews"> 
+
+        <article class="revBlock">
+            <div class="image-container" >
+                <img src="images\gojo.jpeg" alt="clients-pic-profile" class="pic-profile" >
+            </div>
+            <h2>Jessica Brown</h2>
+            <p class="review-descrpition">I had the pleasure of working with Siya for several weeks, and I cannot recommend them highly enough for anyone seeking help in accounting. Siya has an exceptional ability to break down complex accounting concepts into easily understandable parts, making challenging topics like financial statements and tax regulations accessible. Their personalized approach, combined with a patient and adaptive teaching style, made each session incredibly effective and enjoyable. Siya's enthusiasm for the subject and their reliability in being well-prepared and punctual made the learning experience both motivating and stress-free. If you're looking for an outstanding accounting tutor, Siya is the perfect choice!</p>
+        </article>
+
+        <article class="revBlock">
+            <div class="image-container" >
+                <img src="images\sukuna.webp" alt="clients-pic-profile" class="pic-profile" >
+            </div>
+            <h2>Anelisa Van Riebeeck</h2>
+            <p class="review-descrpition">I had the pleasure of working with Siya for several weeks, and I cannot recommend them highly enough for anyone seeking help in accounting. Siya has an exceptional ability to break down complex accounting concepts into easily understandable parts, making challenging topics like financial statements and tax regulations accessible. Their personalized approach, combined with a patient and adaptive teaching style, made each session incredibly effective and enjoyable. Siya's enthusiasm for the subject and their reliability in being well-prepared and punctual made the learning experience both motivating and stress-free. If you're looking for an outstanding accounting tutor, Siya is the perfect choice!</p>
+        </article>
+
+        <article class="revBlock">
+            <div class="image-container" >
+                <img src="images\gokul.jpg" alt="clients-pic-profile" class="pic-profile" >
+            </div>
+            <h2>Alissa Angel</h2>
+            <p class="review-descrpition">I had the pleasure of being tutored by Kwenza, and their expertise in Computer Science is exceptional. Kwenza has a remarkable ability to simplify complex topics, making challenging areas like algorithms, data structures, and software development both comprehensible and engaging. Their thorough and patient teaching approach, coupled with real-world examples and effective problem-solving strategies, made each session highly productive and insightful. Kwenza’s enthusiasm for Computer Science is evident and infectious, and their personalized methods ensured that my specific learning needs were expertly addressed. Thanks to Kwenza, I now have a much stronger grasp of the subject and increased confidence in my abilities. I wholeheartedly recommend Kwenza to anyone looking to advance their understanding of Computer Science.</p>
+        </article>
+
+        <article class="revBlock">
+            <div class="image-container" >
+                <img src="images\itachi.png" alt="clients-pic-profile" class="pic-profile">
+            </div>
+            <h2>Michelle Ngcobo</h2>
+            <p class="review-descrpition">I had the privilege of being tutored by Rinae, and their expertise in Information Systems is truly outstanding. Rinae has an exceptional talent for demystifying complex concepts, making intricate topics like data management, system analysis, and IT infrastructure both clear and accessible. Their methodical and patient teaching style, combined with practical examples and insightful problem-solving techniques, made each lesson both engaging and highly effective. Rinae’s passion for Information Systems shines through in their teaching, and their tailored approach ensured that my specific learning needs were met. Thanks to Rinae, I have gained a deeper understanding and confidence in the field, and I highly recommend them to anyone seeking to excel in Information Systems.</p>
+        </article>
+
+   </section>
+
+   <!-- FOOTER -->
+   <footer style="  padding: 5px; color: black;"> 
+    <p>&copy; 2024 TutorConnect. All rights reserved.</p>
+    <p>Authors: Kwenza Hadebe | Rinae Makhado | Siyabulela Gongqa | Mthobisi Latha</p>
+    <p>Contact: <a href="mailto:hadebezohh@gmail.com">hadebezohh@gmail.com</a></p>
+    <p>Follow us on:
+      <a href="https://facebook.com/tutorconnect" target="_blank" style="color: black;">Facebook</a> |
+      <a href="https://twitter.com/tutorconnect" target="_blank" style="color: black;">Twitter</a> |
+      <a href="https://instagram.com/tutorconnect" target="_blank" style="color: black;">Instagram</a>
+    </p>
+  </footer>
+
+    </body>
+    <script src="script.js"></script>
+    <button id="backToTopBtn" class="back-to-top" onclick="scrollToTop()">&#8679; Back to Top</button>
+</html>

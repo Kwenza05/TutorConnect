@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Search Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Tutor Search Results</h1>
+    </header>
+    <main>
+        <div id="results">
+            <!-- Results will be displayed here -->
+        </div>
+    </main>
+    
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject');
+
+        // Example tutor data (this could be fetched from a database in a real app)
+        const tutors = [
+            { id: 1, name: "Mtho", subject: "Math", description: "Math 3 Expert" },
+            { id: 2, name: "Kwenza", subject: "Computer Science", description: "CS3 Guru" },
+            { id: 3, name: "Rinae", subject: "Information Systems", description: "IS3 Specialist" },
+            { id: 4, name: "Siya", subject: "Accounting", description: "Accounting 3 Master" }
+        ];
+
+        // Filter tutors based on search subject
+        const filteredTutors = tutors.filter(tutor => 
+            tutor.subject.toLowerCase() === subject.toLowerCase()
+        );
+
+        // Display results
+        const resultsDiv = document.getElementById('results');
+
+        if (filteredTutors.length > 0) {
+            filteredTutors.forEach(tutor => {
+                const tutorBlock = document.createElement('div');
+                tutorBlock.innerHTML = `
+                    <h3>${tutor.name} - ${tutor.description}</h3>
+                    <p>Subject: ${tutor.subject}</p>
+                    <a href="tutor_profile.php?id=${tutor.id}">View Profile</a>
+                `;
+                resultsDiv.appendChild(tutorBlock);
+            });
+        } else {
+            resultsDiv.innerHTML = `<p>No tutors found for "${subject}".</p>`;
+        }
+    </script>
+</body>
+</html>
